@@ -2,7 +2,14 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/List">List</router-link> |
+      <router-link to="/Create">Create</router-link> |
+      <router-link to="/Detail">Detail</router-link> |
+      <router-link to="/Emit">Emit</router-link> |
+      <router-link to="/Bus">Bus</router-link> |
+      <router-link to="/Store">Slot</router-link> |
+      <router-link to="/port">Port</router-link>  |  
+      <router-link to="/port/new" exact>Port New</router-link>         
     </div>
     <router-view/>
   </div>
