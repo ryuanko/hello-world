@@ -48,8 +48,14 @@ export default {
     }
   },
   methods: {
+    // post
     setData () {
-
+      const urlPath = "movie/"
+      this.$http.post(urlPath, this.params).then(res => {
+        console.log(res)
+      }).catch(error => {
+        console.log(error)
+      })
     }
   },
   created() {},

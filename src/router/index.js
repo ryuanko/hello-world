@@ -28,12 +28,12 @@ Vue.use(VueRouter)
   {
     path: '/emit',
     name: 'Emit',
-    component: () => import(/* webpackChunkName: "emit" */ '@/views/Emit.vue')
+    component: () => import(/* webpackChunkName: "emit" */ '@/views/emit/EmitParent.vue')
   },
   {
     path: '/slot',
     name: 'Slot',
-    component: () => import(/* webpackChunkName: "slot" */ '@/views/Slot.vue')
+    component: () => import(/* webpackChunkName: "slot" */ '@/views/slot/Slot.vue')
   },
   {
     path: '/store',
@@ -44,11 +44,20 @@ Vue.use(VueRouter)
     path: '/bus',
     name: 'Bus',
     component: () => import(/* webpackChunkName: "bus" */ '@/views/Bus.vue')
+  },
+  {
+    path: '/etc',
+    name: 'Etc',
+    component: () => import(/* webpackChunkName: "etc" */ '@/views/etc/Etc.vue')
   }
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+  base: process.env.VUE_APP_BASE,
+  mode: 'history',
+  linkActiveClass: 'on',
+  linkExactActiveClass: ''
 })
 
 export default router

@@ -40,6 +40,10 @@
             <textarea v-model="params.overview" cols="5" rows="5"></textarea>
           </td>
         </tr>
+        <tr>
+          <button type="button" @click="setData()">수정</button> 
+          <button type="button" @click="setDelete()">삭제</button>
+        </tr>
       </table> 
     </div>
   </div>
@@ -67,12 +71,31 @@ export default {
       }).catch(error => {
         console.log(error)
       })
+    },
+    // put
+    setData () {
+      const urlPath = "movie/" + this.params.id
+      this.$http.put(urlPath, this.params).then(res => {
+        console.log(res)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    // put
+    setDelete () {
+      const urlPath = "movie/" + this.params.id
+      this.$http.delete(urlPath).then(res => {
+        console.log(res)
+      }).catch(error => {
+        console.log(error)
+      })
     }
+
   },
   created() {},
   mounted() {
-    this.params.id = this.$router.history.current.params.id
-    if (_.isEmpty(`${this.params.id}`)) return
+    this.params.id = this.$router.history.current.params.id || null
+    if (!_.isNumber(this.params.id)) return
     this.getData()
   }
 }
@@ -110,4 +133,5 @@ export default {
   .Content {
     width: 100%;
   }
+  button {margin-top: 20px; margin-right: 10px;}
 </style>
