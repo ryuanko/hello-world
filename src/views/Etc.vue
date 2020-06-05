@@ -1,6 +1,39 @@
 <template>
   <div class="etc">
     <h1>This is an etc page</h1>
+    <div class="searchbox">
+				<select v-model="search_type">
+					<option value="">All</option>
+					<option value="id">Id</option>
+					<option value="service_id">Service Id</option>
+					<option value="name">Name</option>
+					<option value="description">Description</option>
+				</select>
+				<input type="text" v-model="search_param" @keydown.enter="getData()">
+				<button type="button" @click="getData()" >검색</button>
+		</div>
+    <table>
+      <thead>
+        <tr>
+          <th>ALL</th>
+          <th>Doc ID</th>
+          <th>Subject</th>
+          <th>Provider</th>
+          <th>Date</th>
+          <th>Read</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="item in list" :key="item.id">
+          <td><input type="checkbox" /></td>
+          <td>{{item.doc_n}}</td>
+          <td class="textAlignL">[{{item.calsn}}]{{item.subj_n}}</td>
+          <td>{{item.kornm_n}}/{{item.team_n}}</td>
+          <td>{{item.crdate_d}}</td>
+          <td>{{item.read_n}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 <script>
@@ -13,48 +46,53 @@ export default {
 	computed: {},
 	data () {
 		return {
-      params: []
+      list: [],
+      search_type: '',
+      search_param: ''
     }
 	},
 	methods: {
     // async 적용 o
     async getData () {
-      console.log('1') 
-      const urlPath = "api/menu"
+      const urlPath = "api/safety"
       await this.$http.get(urlPath).then(res => {
-        console.log('2') 
-        this.params = res.data
-        console.log(this.params)
+        this.list = res.data
       }).catch(error => {
-        console.log(error)
       })
-      console.log(3)
+      console.log(this.list)
     },
     // async 적용 x
     getData2 () {
-      console.log('1') 
-      const urlPath = "api/menu"
+      const urlPath = "api/safety"
       this.$http.get(urlPath).then(res => {
-        console.log('2') 
-        this.params = res.data
-        console.log(this.params)
+        this.list = res.data.results
       }).catch(error => {
-        console.log(error)
       })
-      console.log(3)
     },
   },
 	created () {},
 	mounted () {
-    // this.getData()
-    const er = _.reduce({ 'a': 1, 'b': 2, 'c': 1, 'd': 2, 'e': 3 }, function(result, value, key) {
-      (result[value] || (result[value] = [])).push(key);
-      return result;
-    }, {});
-    console.log(er)
-    // 1: (2) ["a", "c"]
-    // 2: ["b"]
+    this.getData()
   },
 	updated () {},
 }
 </script>
+<style scoped>
+  table {width: 80%; margin: 0 auto;}
+  table, th, td { border: 1px solid #bcbcbc; }
+  .textAlignL {text-align: left; padding-left: 10px;}
+  .searchbox {margin: 10px;}
+  .searchbox select {
+    height: 26px;
+    border: 1px solid black;
+    border-right: 0;
+  }
+  .searchbox input {
+    height: 22px;
+    border: 1px solid black;
+    border-left: 0;
+  }
+  .searchbox button {
+    margin-left: 10px;
+  }
+</style>
