@@ -1,11 +1,8 @@
 <template>
-  <div class="workspace">
-    <router-view/>				
-    <router-view name="header" />
-    <router-view name="body" />
+  <div class="child3">
+    <h1>This is an child3 page</h1>
   </div>
 </template>
-
 <script>
 export default {
 	name: '',
@@ -15,7 +12,9 @@ export default {
 	watch: {},
 	computed: {},
 	data () {
-		return {}
+		return {
+      params: []
+    }
 	},
 	methods: {},
 	created () {},

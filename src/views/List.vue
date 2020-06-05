@@ -35,16 +35,18 @@ export default {
     }
   },
   methods: {
-    getData () {    
+    async getData () {    
       const urlPath = "movie/now_playing";
-      this.$http.get(urlPath).then(res => {
+      console.log(1)
+      await this.$http.get(urlPath, {}).then(res => {
+        console.log(2)
         this.list = res.data.results
       }).catch(error => {
         console.log(error)
       })
+      console.log(3)      
     },
     goDetail (id) {
-
       this.$router.push({name: "Detail", params: {id:id}})
     }
   },

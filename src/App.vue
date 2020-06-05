@@ -1,24 +1,17 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/list">List</router-link> |
-      <router-link to="/create">Create</router-link> |
-      <router-link to="/detail">Detail</router-link> |
-      <router-link to="/emit">Emit</router-link> |
-      <router-link to="/bus">Bus</router-link> |
-      <router-link to="/slot">Slot</router-link> |
-      <router-link to="/store">Store</router-link> |
-      <router-link to="/etc">Etc</router-link>
-
-    </div>
-    <router-view/>
+    <headerV/>
+    <workspace/>
     <div v-if="isShow" class="dim"></div>
   </div>
 </template>
+
 <script>
+import HeaderV from '@/components/Header'
+import Workspace from '@/components/Workspace'
 export default {
-	name: '',
+  name: '',
+  components: {HeaderV, Workspace},
 	data () {
 		return {
       isShow: false

@@ -103,7 +103,7 @@ export default {
 <style scoped>
   table {
     text-align: left;
-    width: 50%;
+    width: 500px;
     z-index: 10;
     position: absolute;
     right: 0;
