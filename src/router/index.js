@@ -73,8 +73,13 @@ Vue.use(VueRouter)
   {
     path: '/etc',
     name: 'Etc',
-    component: () => import(/* webpackChunkName: "etc" */ '@/views/Etc.vue')
+    component: () => import(/* webpackChunkName: "etc" */ '@/views/etc/Etc.vue'),
   },
+  {
+    path: '/etc/:id/detail',
+    name: 'EtcDetail',
+    component: () => import(/* webpackChunkName: "etcDetail" */ '@/views/etc/EtcDetail.vue'),
+  }
 ]
 
 const router = new VueRouter({

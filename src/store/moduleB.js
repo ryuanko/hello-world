@@ -1,18 +1,19 @@
 const moduleB = {
   state: () => ({
-    count: 0,
-    name: 'B'
+    doc_n: ''
   }),
   mutations: {
-    incrementB (state) {
-      // state는 지역 모듈 상태 입니다
-      state.count++
+    // state는 지역 모듈 상태 입니다
+    reset_B (state) {
+      state.doc_n = ''
+    },
+    setDocN_B (state, doc_n) {
+      state.doc_n = doc_n
     }
   },
-
   getters: {
-    doubleCountB (state) {
-      return state.count * 2
+    getDocN_B: state => {
+      return state.doc_n
     }
   }
 }
